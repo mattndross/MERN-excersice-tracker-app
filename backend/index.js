@@ -8,11 +8,11 @@ const port  = process.env.PORT || 8000;
 
 MongoClient.connect(
     process.env.RESTREVIEWS_DB_URI,
-    {poolSize:50, //max 50 connections at the same time
-    wtimeout:250, //cancel the connection if it takes more than 250seconds
-    useNewUrlParse: true,}
+    {maxPoolSize:50, //max 50 connections at the same time
+    wtimeoutMS:2500, //cancel the connection if it takes more than 250seconds
+    useNewUrlParser: true,}
 )
-.catch(()=>{
+.catch((err)=>{
     console.error(err.stack);
     process.exit(1)
 })
