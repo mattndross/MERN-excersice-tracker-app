@@ -17,7 +17,7 @@ export default class RestaurantsDAO {
       );
     }
   }
-  static getRestaurants({    //return the list of restaurants
+  static async getRestaurants({    //return the list of restaurants
     filters = null,
     page = 0,                //default page 0
     restaurantsPerPage = 20,
@@ -32,5 +32,25 @@ export default class RestaurantsDAO {
         query = { "address.zipcode": { $eq: filters["zipcode"] } };
       }
     }
+
+    let cursor; //store the results
+    try {
+        cursor = await restaurants
+        .find(query)
+    } catch(e) {
+        console.error(`unable to issue find command, ${e}`)
+        return {restaurantsList: [], totalNumOfRestaurants: 0}
+    }
+    const displaycursor = cursor.limit(restaurantsPerPage).skip(restaurantsPerPage*page);
+
+    try {
+        const restaurantsList = await displaycursor.toArray();
+        const totalNumberOfRestaurants = await restaurants.countDocuments(query);
+        return {restaurantsList, totalNumberOfRestaurants}
+    } catch(e){
+        console.error(`Unable to convert cursor to array or problem counting documents: ${e}`);
+        return {restaurantsList: [], totalNumberOfRestaurants: 0}
+    }
   }
+  
 }
