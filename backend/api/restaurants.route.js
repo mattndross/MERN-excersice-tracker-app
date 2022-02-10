@@ -1,8 +1,15 @@
-import express from "express"
-import RestaurantsCtrl from "./restaurants.controller.js"
+import express from "express";
+import RestaurantsCtrl from "./restaurants.controller.js";
+import ReviewsCtrl from "./reviews.controller.js";
 
 const router = express.Router(); //acces to express router
 
 router.route("/").get(RestaurantsCtrl.apiGetRestaurants);
 
-export default router
+router
+  .route("/review")
+  .post(ReviewsCtrl.apiPostReview)
+  .put(ReviewsCtrl.apiPutReview)
+  .delete(ReviewsCtrl.apiDeleteReview);
+
+export default router;
