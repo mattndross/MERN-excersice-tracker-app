@@ -10,8 +10,7 @@ export default class RestaurantsDAO {
       restaurants = await conn
         .db(process.env.RESTREVIEWS_NS)
         .collection("restaurants");
-        console.log("this is restaurants")
-        console.log(restaurants)
+        
     } catch (e) {
       console.error(
         `Unable to establish a conection handle in restaurantDAO: ${e}`
