@@ -7,8 +7,8 @@ export default class ReviewsController {
             const restaurantId = req.body.restaurant_id;   
             const review = req.body.text;
             const userInfo = {
-                name = req.body.name,
-                _id = req.body.user_id,
+                name : req.body.name,
+                _id : req.body.user_id,
             };
             const date = new Date();
             const reviewResponse = await ReviewsDAO.addReview(
