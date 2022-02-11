@@ -52,7 +52,7 @@ export default class ReviewsController {
             res.status(500).json({error:e.messege});
         }
     }
-    static async apiDeleteController(req, res, next) {
+    static async apiDeleteReview(req, res, next) {
         try{
             const reviewId = req.query.id;
             const userId = req.body.user_id;
