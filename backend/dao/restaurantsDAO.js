@@ -88,7 +88,7 @@ export default class RestaurantsDAO {
         },
         {
           $addFields: {
-            reviews : "reviews",
+            reviews : "$reviews",
           },
         }
       ]
