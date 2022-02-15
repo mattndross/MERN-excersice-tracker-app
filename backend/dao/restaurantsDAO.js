@@ -6,7 +6,6 @@ let restaurants; //to store a reference of the database
 export default class RestaurantsDAO {
   static async injectDB(conn) {    //to initially connect to the database. This method will be called as soon as the server starts
     if (restaurants) {            //if already is a reference then just return
-      console.log("start 2")
       return;
     }
     try {
@@ -40,7 +39,6 @@ export default class RestaurantsDAO {
     try {
         cursor = await restaurants
         .find(query);
-        console.log(cursor)
     } catch(e) {
         console.error(`unable to issue find command, ${e}`)
         return {restaurantsList: [], totalNumOfRestaurants: 0}
@@ -101,7 +99,7 @@ export default class RestaurantsDAO {
     }
   }
 
-  static async getRestaurantCusines (){
+  static async getCuisines(){
     let cuisines = [];
     try {
       cuisines = await restaurants.distinct("cuisine");

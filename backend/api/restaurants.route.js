@@ -6,7 +6,7 @@ const router = express.Router(); //acces to express router
 
 router.route("/").get(RestaurantsCtrl.apiGetRestaurants);
 router.route("/id/:id").get(RestaurantsCtrl.apiGetRestaurantById);
-router.route("/cuisines").get(RestaurantsCtrl.apiGetRestaurantCuisine);
+router.route("/cuisines").get(RestaurantsCtrl.apiGetRestaurantCuisines);
 router
   .route("/review")
   .post(ReviewsCtrl.apiPostReview)
